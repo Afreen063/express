@@ -1,7 +1,6 @@
 // module statement which is used to import files, here we basically use  require("lib name").
 const express= require("express");
- 
-
+const authRouter= require("./routs/auth");
 // configuration
 
 
@@ -11,15 +10,16 @@ const appstart= express();
 
 
 
-// middleware
-
+// middleware is basically the middle of client req and controller of server(logic to res the req of client).
+// it is used to check user id password.
+appstart.use(authRouter);
 
 
 //routes
 appstart.get('/',(req,res)=>{
     res.send("hello world");
 });
-
+ appstart.get("/checkuser");
 
 
 //listen
