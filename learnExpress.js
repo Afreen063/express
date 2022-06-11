@@ -1,6 +1,7 @@
 // module statement which is used to import files, here we basically use  require("lib name").
 const express= require("express");
 const authRouter= require("./routs/auth");
+const path = require("path")
 // configuration
 
 
@@ -20,6 +21,9 @@ appstart.get('/',(req,res)=>{
     res.send("hello world");
 });
  appstart.get("/checkuser");
+ appstart.get('/about',(req,res)=>{
+    res.sendFile(path.join(_dirname, "index.html"));
+ })
 
 
 //listen
