@@ -8,7 +8,7 @@ const path = require("path")
 
 // app or server start statements
 const appstart= express();
-
+appstart.use(express.static(path.join(__dirname, "public")));
 
 
 // middleware is basically the middle of client req and controller of server(logic to res the req of client).
@@ -17,12 +17,16 @@ appstart.use(authRouter);
 
 
 //routes
-appstart.get('/',(req,res)=>{
-    res.send("hello world");
+appstart.get('/hello/:name',(req,res)=>{
+    res.send("hello world"+ req.params.name);// make variable and use it
 });
  appstart.get("/checkuser");
  appstart.get('/about',(req,res)=>{
-    res.sendFile(path.join(_dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
+ });
+ appstart.get("/json",(req,res)=>{
+    res.json({"harry":89});//send json file
+
  })
 
 
